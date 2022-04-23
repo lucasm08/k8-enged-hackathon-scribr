@@ -1,0 +1,59 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: scribr
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: scribr
+  template:
+    metadata:
+      labels:
+        app: scribr
+    spec:
+      containers:
+        - image: lucasm08/scribr-app:v1
+          name: scribr
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
+          resources:
+            requests:
+              memory: '512Mi'
+              cpu: '500m'
+            limits:
+              memory: '512Mi'
+              cpu: '500m'
+          env:
+            - name: GITHUB_ID
+              valueFrom:
+                configMapKeyRef:
+                  name: env-config
+                  key: GITHUB_ID
+            - name: GITHUB_SECRET
+              valueFrom:
+                configMapKeyRef:
+                  name: env-config
+                  key: GITHUB_SECRET
+            - name: DATABASE_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: env-config
+                  key: DATABASE_URL
+            - name: JWT_SECRET
+              valueFrom:
+                configMapKeyRef:
+                  name: env-config
+                  key: JWT_SECRET
+            - name: NEXT_PUBLIC_API_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: env-config
+                  key: NEXT_PUBLIC_API_HOST
+            - name: NEXTAUTH_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: env-config
+                  key: NEXTAUTH_URL

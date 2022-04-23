@@ -1,0 +1,12 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: env-config
+data:
+  # Configuration values can be set as key-value properties
+  GITHUB_ID: 49cb7cda872c38cd9bfc
+  GITHUB_SECRET: e60762189572b396c38838d6f768a0903940297a
+  DATABASE_URL: mongodb+srv://test:Guva0705_@cluster0.y1ufw.mongodb.net/known?retryWrites=true&w=majority
+  JWT_SECRET: lucasm08
+  NEXT_PUBLIC_API_HOST: scribr.xyz
+  NEXTAUTH_URL: scribr.xyz
